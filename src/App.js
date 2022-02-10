@@ -1,6 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
+import { Form } from './components/Form';
+import { ToDoList } from './components/ToDoList';
 
 function App() {
   const [tasks, setTasks] = useState([])
@@ -18,20 +20,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <input
-          placeholder='Escreva sua tarefa'
-          value={inputTask}
-          type="text"
-          onChange={(event)=>setInputTask(event.target.value)}
-          />
-        <button onClick={()=>addTask(inputTask)}>Criar Tarefa</button>
-        <ul>
-          {typeof tasks === 'object' && tasks.map((task,index)=>
-            <li key={index}>
-              <p>{task}</p>
-              <button onClick={()=>rmTask(task)}> Finalizar Tarefa </button>
-            </li>)}
-          </ul>
+        <Form inputTask={inputTask} setInputTask={setInputTask} addTask={addTask}/>
+        <ToDoList rmTask={rmTask} tasks={tasks}/>
       </header>
     </div>
   );
